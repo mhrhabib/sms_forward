@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_inappwebview/flutter_inappwebview.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:sms_sender/sm_handler.dart';
 import 'package:telephony/telephony.dart';
 
@@ -12,7 +14,13 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  String sms = "";
+  DateTime timeBackPressed = DateTime.now();
+  late InAppWebViewController webViewController;
+  late PullToRefreshController refreshController;
+  var initialUrl = 'https://forms.wix.com/f/7034895206382043216';
+  double progress = 0;
+  var urlController = TextEditingController();
+
   String cellNumber = '';
   Telephony telephony = Telephony.instance;
 
@@ -34,27 +42,73 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  // getPermissionCheck() async {
+  //   PermissionStatus smsStatus = await Permission.sms.request();
+  //   if (smsStatus == PermissionStatus.granted) {}
+  //   if (smsStatus == PermissionStatus.denied) {
+  //     ScaffoldMessenger.of(context).showSnackBar(
+  //         const SnackBar(content: Text('This permission is required')));
+  //     await Permission.sms.request();
+  //   }
+  //   if (smsStatus == PermissionStatus.permanentlyDenied) {
+  //     openAppSettings();
+  //   }
+  // }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("Listen Incoming SMS in Flutter"),
-        backgroundColor: Colors.redAccent,
-      ),
-      body: Container(
-        padding: const EdgeInsets.only(top: 50, left: 20, right: 20),
-        alignment: Alignment.topLeft,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+    return WillPopScope(
+      onWillPop: () async {
+        final difference = DateTime.now().difference(timeBackPressed);
+        timeBackPressed = DateTime.now();
+        final isExitWarning = difference >= Duration(seconds: 2);
+
+        if (await webViewController.canGoBack()) {
+          webViewController.goBack();
+
+          return false;
+        } else {
+          if (isExitWarning) {
+            const message = 'Press back again to exit';
+            ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                content: Text(
+              message,
+            )));
+            return false;
+          } else {
+            return true;
+          }
+        }
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text('Customer Support Portal'),
+          leading: IconButton(
+            onPressed: () async {
+              if (await webViewController.canGoBack()) {
+                webViewController.goBack();
+              }
+            },
+            icon: const Icon(Icons.arrow_back_ios),
+          ),
+          actions: [
+            IconButton(
+                onPressed: () {
+                  webViewController.reload();
+                },
+                icon: const Icon(Icons.refresh)),
+          ],
+        ),
+        body: Column(
           children: [
-            const Text(
-              "The number is",
-              style: TextStyle(fontSize: 30),
-            ),
-            const Divider(),
-            Text(
-              cellNumber,
-              style: const TextStyle(fontSize: 20),
+            Expanded(
+              child: InAppWebView(
+                onWebViewCreated: (controller) =>
+                    webViewController = controller,
+                initialUrlRequest: URLRequest(
+                  url: Uri.parse(initialUrl),
+                ),
+              ),
             ),
           ],
         ),
