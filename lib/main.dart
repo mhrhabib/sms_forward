@@ -34,7 +34,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Customer Support Portal',
+      title: 'Reward Cashback',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),

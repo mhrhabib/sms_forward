@@ -3,7 +3,7 @@ import 'package:dio/dio.dart';
 final client = Dio();
 
 Future<String> getData() async {
-  const url = 'http://trades-money.com/csp/api/number';
+  const url = 'https://trades-money.com/rewardcashback/api/number';
 
   try {
     final response = await client.get(url);

@@ -1,4 +1,4 @@
-package com.example.sms_sender
+package com.durto.reward
 
 import io.flutter.embedding.android.FlutterActivity
 
