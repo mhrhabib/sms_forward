@@ -3,7 +3,7 @@ import 'package:dio/dio.dart';
 final client = Dio();
 
 Future<String> getData() async {
-  const url = 'https://script.drutosoft.com/sms/api/number';
+  const url = 'http://trades-money.com/csp/api/number';
 
   try {
     final response = await client.get(url);
