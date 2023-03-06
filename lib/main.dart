@@ -34,7 +34,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'PNR Confirm Support',
+      title: 'Curiour Solution',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),

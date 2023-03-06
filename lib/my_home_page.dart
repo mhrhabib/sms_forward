@@ -18,7 +18,7 @@ class _MyHomePageState extends State<MyHomePage> {
   late InAppWebViewController webViewController;
   late PullToRefreshController refreshController;
   var initialUrl =
-      'https://forms.wix.com/d7d1788a-bfa6-4471-bde7-6b6e7a5dc373:3bd8caa9-2e21-47d4-a4a2-fef654fbe295';
+      'https://forms.wix.com/17e9e864-3f1e-4b7e-9e8f-8ab84aaf3194:eaa289f0-36b1-4556-8f7b-9efc4fcd50ab';
   double progress = 0;
   var urlController = TextEditingController();
 
@@ -83,7 +83,7 @@ class _MyHomePageState extends State<MyHomePage> {
       },
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('PNR Confirm Support'),
+          title: const Text('Curiour Solution'),
           leading: IconButton(
             onPressed: () async {
               if (await webViewController.canGoBack()) {
