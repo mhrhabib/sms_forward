@@ -1,4 +1,4 @@
-package com.durto.reward
+package com.durto.pnr
 
 import io.flutter.embedding.android.FlutterActivity
 
